@@ -10,26 +10,30 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col>Plateforme</ion-col>
-      <ion-col>{{ (this.informations | async)?.platform }}</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>Version</ion-col>
-      <ion-col>{{ (this.informations | async)?.osVersion }}</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>UUID</ion-col>
-      <ion-col>{{ (this.informations | async)?.uuid }}</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>Model</ion-col>
-      <ion-col>{{ (this.informations | async)?.model }}</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>Connection</ion-col>
-      <ion-col>{{ (this.network | async)?.connectionType }}</ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>Plateforme</ion-col>
+          <ion-col>{{ (informations | async)?.platform }}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Version</ion-col>
+          <ion-col>{{ (informations | async)?.osVersion }}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>UUID</ion-col>
+          <ion-col>{{ (informations | async)?.uuid }}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Modèle</ion-col>
+          <ion-col>{{ (informations | async)?.model }}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Connexion</ion-col>
+          <ion-col>{{ (network | async)?.connectionType }}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
