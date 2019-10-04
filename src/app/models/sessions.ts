@@ -1,5 +1,6 @@
 import { Track } from "./track";
 import { Speaker } from "../speakers/speaker.model";
+import {Note} from './note';
 
 export interface Session {
   id: number;
@@ -15,6 +16,7 @@ export interface Session {
   complexity: string;
   speakers: number[];
   speakersInfos?: Speaker[];
+  notes?: Note[];
 }
 
 export type Dictionary<T> =  { [id: string]: T }

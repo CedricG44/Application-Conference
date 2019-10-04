@@ -1,6 +1,5 @@
-import { Component, OnInit, Input } from "@angular/core";
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Session } from "../../../models/sessions";
-import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
 
 @Component({
   selector: "app-session-notes",
@@ -9,29 +8,13 @@ import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
 })
 export class SessionNotesComponent implements OnInit {
   @Input() session: Session;
+  @Output() takePicture = new EventEmitter();
 
-  constructor(private camera: Camera) {}
+  constructor() {}
 
   ngOnInit() {}
 
-  onTakePicture() {
-    const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    };
-
-    this.camera.getPicture(options).then(
-      imageData => {
-        // imageData is either a base64 encoded string or a file URI
-        // If it's base64 (DATA_URL):
-        let base64Image = "data:image/jpeg;base64," + imageData;
-        console.log("img", base64Image);
-      },
-      err => {
-        // Handle error
-      }
-    );
+  onTakePicture(id: string) {
+    this.takePicture.emit(id);
   }
 }

@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Storage } from "@ionic/storage";
 import {Dictionary, Session} from '../models/sessions';
 import {Speaker} from '../speakers/speaker.model';
+import {Note} from '../models/note';
 
 
 
@@ -22,7 +23,7 @@ export class StorageService {
     this.storage.set(this.SPEAKERS, speakers);
   }
 
-  setNotes(notes: any): void {
+  setNotes(notes: Dictionary<Note[]>): void {
     this.storage.set(this.NOTES, notes);
   }
 
@@ -50,7 +51,7 @@ export class StorageService {
     });
   }
 
-  getNotes(): Promise<any> {
+  getNotes(): Promise<Dictionary<Note[]>> {
     return this.storage.get(this.NOTES).then((notes: any) => {
       if (notes) {
         return notes;

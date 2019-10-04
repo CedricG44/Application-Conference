@@ -16,6 +16,10 @@ import { SpeakersStoreService } from "./services/speakers-store.service";
 import { StorageService } from "./services/storage.service";
 import { SharedService } from "./services/shared.service";
 import { HttpClientModule } from "@angular/common/http";
+import {NotesService} from './services/notes.service';
+import {NotesStoreService} from './services/notes-store.service';
+import {Camera} from '@ionic-native/camera/ngx';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,8 +42,11 @@ import { HttpClientModule } from "@angular/common/http";
     SessionsStoreService,
     SpeakersService,
     SpeakersStoreService,
+    NotesService,
+    NotesStoreService,
     StorageService,
-    SharedService
+    SharedService,
+    Camera
   ],
   bootstrap: [AppComponent]
 })

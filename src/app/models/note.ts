@@ -1,5 +1,5 @@
 export interface Note {
-  idSession: number;
+  idSession: string;
   description: string;
   imageBase64: string;
 }

@@ -8,7 +8,7 @@
   </ion-row>
   <ion-row>
     <ion-col>
-      <ion-button (click)="onTakePicture()"
+      <ion-button (click)="onTakePicture(session.id)"
         ><ion-icon name="camera"></ion-icon
       ></ion-button>
       <ion-button><ion-icon name="photos"></ion-icon></ion-button>
@@ -26,7 +26,7 @@
   </ion-row>
   <ion-row>
     <ion-col>
-      <ion-img src="{{ image }}"></ion-img>
+      <ion-img *ngFor="let photo of session.notes" [src]="photo.imageBase64"></ion-img>
     </ion-col>
   </ion-row>
 </ion-grid>

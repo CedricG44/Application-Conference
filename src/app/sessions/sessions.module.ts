@@ -10,7 +10,6 @@ import { SessionDetailsPageComponent } from "./containers/session-details-page/s
 
 import { SessionNotesComponent } from "./components/session-notes/session-notes.component";
 import { SessionNotesPageComponent } from "./containers/session-notes-page/session-notes-page.component";
-import { Camera } from "@ionic-native/camera/ngx";
 
 @NgModule({
   declarations: [
@@ -21,7 +20,6 @@ import { Camera } from "@ionic-native/camera/ngx";
     SessionNotesComponent,
     SessionNotesPageComponent
   ],
-  imports: [CommonModule, SessionsRoutingModule, IonicModule],
-  providers: [Camera]
+  imports: [CommonModule, SessionsRoutingModule, IonicModule]
 })
 export class SessionsModule {}
