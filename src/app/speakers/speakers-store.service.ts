@@ -1,11 +1,15 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, combineLatest } from "rxjs";
 import { SpeakersService } from "./speakers.service";
 import { Speaker } from "./speaker.model";
+import { ActivatedRoute } from "@angular/router";
 
 @Injectable()
 export class SpeakersStoreService {
-  constructor(private speakersService: SpeakersService) {
+  constructor(
+    private speakersService: SpeakersService,
+    private route: ActivatedRoute
+  ) {
     this.fetchAll();
   }
 
@@ -20,6 +24,19 @@ export class SpeakersStoreService {
   // Expose the observable$ part of the _todos subject (read only stream)
   readonly speakers$ = this._speakers.asObservable();
 
+  readonly selectedSpeaker$ = combineLatest(
+    this.speakers$,
+    this.route.params,
+    (speakers, params) => {
+      const url = this.route.snapshot["_routerState"].url;
+      const urlSplitted = url.split("/");
+      const id = urlSplitted && urlSplitted[2];
+
+      const selectedSpeaker = speakers.find(s => s.id == id);
+      return selectedSpeaker;
+    }
+  );
+
   // the getter will return the last value emitted in _todos subject
   get speakers(): Speaker[] {
     return this._speakers.getValue();
@@ -33,6 +50,5 @@ export class SpeakersStoreService {
 
   async fetchAll() {
     this.speakers = await this.speakersService.getSpeakers().toPromise();
-    console.log("speakers", this.speakers);
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
-import { SpeakersStoreService } from "../speakers-store.service";
+import { SpeakersStoreService } from "../../speakers-store.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-speakers-page",
@@ -8,11 +9,14 @@ import { SpeakersStoreService } from "../speakers-store.service";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SpeakersPageComponent implements OnInit {
-  constructor(public speakersStore: SpeakersStoreService) {}
+  constructor(
+    public speakersStore: SpeakersStoreService,
+    private router: Router
+  ) {}
 
   ngOnInit() {}
 
   onNavigateToDetail(id: string) {
-    console.log("ID", id);
+    this.router.navigate(["speakers", id]);
   }
 }
