@@ -17,14 +17,14 @@ export class SessionsStoreService {
   private readonly _sessions = new BehaviorSubject<Dictionary<Session>>(
     {}
   );
-  private readonly _speakerSessionLinks = new BehaviorSubject<any>({});
+  private readonly _speakerSessionLinks = new BehaviorSubject<Dictionary<string[]>>({});
 
   readonly sessions$ = this._sessions.asObservable();
-  readonly corresp$ = this._speakerSessionLinks.asObservable();
+  readonly speakerSessionLinks$ = this._speakerSessionLinks.asObservable();
 
   readonly sessionsArray$ = this.sessions$.pipe(
     map((sessions: Dictionary<Session>) => {
-      return Object.keys(sessions).map((id: any) => sessions[id]);
+      return Object.keys(sessions).map(id => sessions[id]);
     })
   );
 
@@ -36,11 +36,11 @@ export class SessionsStoreService {
     this._sessions.next(val);
   }
 
-  get speakerSessionLinks(): any {
+  get speakerSessionLinks(): Dictionary<string[]> {
     return this._speakerSessionLinks.getValue();
   }
 
-  set speakerSessionLinks(val: any) {
+  set speakerSessionLinks(val: Dictionary<string[]>) {
     this._speakerSessionLinks.next(val);
   }
 
@@ -54,7 +54,7 @@ export class SessionsStoreService {
     //   "nom du speaker": ["1", "2"];
     // }
     let speakerSessionLinks = {};
-    const sessionsArray = Object.keys(sessions).map((id: any) => sessions[id]);
+    const sessionsArray = Object.keys(sessions).map(id => sessions[id]);
 
     for (const session of sessionsArray) {
       if (session.speakers) {

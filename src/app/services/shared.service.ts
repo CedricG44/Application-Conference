@@ -27,7 +27,7 @@ export class SharedService {
 
     readonly selectedSpeakerWithSession$ = combineLatest(
         this.speakersStoreService.selectedSpeaker$,
-        this.sessionsStoreService.corresp$,
+        this.sessionsStoreService.speakerSessionLinks$,
         this.sessionsStoreService.sessions$,
         (speaker, corresp, sessions) => {
             return {
