@@ -25,6 +25,11 @@ const routes: Routes = [
     path: "speakers",
     loadChildren: () =>
       import("./speakers/speakers.module").then(m => m.SpeakersModule)
+  },
+  {
+    path: "device",
+    loadChildren: () =>
+      import("./device/device.module").then(m => m.DeviceModule)
   }
 ];
 
