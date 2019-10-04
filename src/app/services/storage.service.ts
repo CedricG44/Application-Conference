@@ -3,28 +3,35 @@ import { Storage } from "@ionic/storage";
 import {Dictionary, Session} from '../models/sessions';
 import {Speaker} from '../speakers/speaker.model';
 
+
+
 @Injectable()
 export class StorageService {
+  SESSIONS: string = "sessions";
+  SPEAKERS: string = "speakers";
+  NOTES: string = "notes";
+  SPEAKERSESSIONLINKS: string = "speakerSessionLinks";
+
   constructor(private storage: Storage) {}
 
   setSessions(sessions: Dictionary<Session>): void {
-    this.storage.set("sessions", sessions);
+    this.storage.set(this.SESSIONS, sessions);
   }
 
   setSpeakers(speakers: Dictionary<Speaker>): void {
-    this.storage.set("speakers", speakers);
+    this.storage.set(this.SPEAKERS, speakers);
   }
 
-  setNotes(speakers: any): void {
-    this.storage.set("notes", speakers);
+  setNotes(notes: any): void {
+    this.storage.set(this.NOTES, notes);
   }
 
-  setC(c: any): void {
-    this.storage.set("c", c);
+  setSpeakerSessionLinks(speakerSessionLinks: Dictionary<string[]>): void {
+    this.storage.set(this.SPEAKERSESSIONLINKS, speakerSessionLinks);
   }
 
   getSessions(): Promise<Dictionary<Session>> {
-    return this.storage.get("sessions").then((sessions: Dictionary<Session>) => {
+    return this.storage.get(this.SESSIONS).then((sessions: Dictionary<Session>) => {
       if (sessions) {
         return sessions;
       } else {
@@ -34,7 +41,7 @@ export class StorageService {
   }
 
   getSpeakers(): Promise<Dictionary<Speaker>> {
-    return this.storage.get("speakers").then((speakers: Dictionary<Speaker>) => {
+    return this.storage.get(this.SPEAKERS).then((speakers: Dictionary<Speaker>) => {
       if (speakers) {
         return speakers;
       } else {
@@ -44,7 +51,7 @@ export class StorageService {
   }
 
   getNotes(): Promise<any> {
-    return this.storage.get("notes").then((notes: any) => {
+    return this.storage.get(this.NOTES).then((notes: any) => {
       if (notes) {
         return notes;
       } else {
@@ -53,10 +60,10 @@ export class StorageService {
     });
   }
 
-  getC(): Promise<any> {
-    return this.storage.get("c").then((c: any) => {
-      if (c) {
-        return c;
+  getSpeakerSessionLinks(): Promise<Dictionary<string[]>> {
+    return this.storage.get(this.SPEAKERSESSIONLINKS).then((speakerSessionLinks: Dictionary<string[]>) => {
+      if (speakerSessionLinks) {
+        return speakerSessionLinks;
       } else {
         return {};
       }

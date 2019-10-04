@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, combineLatest } from "rxjs";
 import { SessionsService } from "./sessions.service";
-import { Session } from "../models/sessions";
+import {Dictionary, Session} from '../models/sessions';
 import { map } from "rxjs/operators";
 import { StorageService } from "./storage.service";
 import { ActivatedRoute } from "@angular/router";
@@ -14,34 +14,34 @@ export class SessionsStoreService {
     private route: ActivatedRoute
   ) {}
 
-  private readonly _sessions = new BehaviorSubject<{ [id: string]: Session }>(
+  private readonly _sessions = new BehaviorSubject<Dictionary<Session>>(
     {}
   );
-  private readonly _corresp = new BehaviorSubject<any>({});
+  private readonly _speakerSessionLinks = new BehaviorSubject<any>({});
 
   readonly sessions$ = this._sessions.asObservable();
-  readonly corresp$ = this._corresp.asObservable();
+  readonly corresp$ = this._speakerSessionLinks.asObservable();
 
   readonly sessionsArray$ = this.sessions$.pipe(
-    map((sessions: any) => {
+    map((sessions: Dictionary<Session>) => {
       return Object.keys(sessions).map((id: any) => sessions[id]);
     })
   );
 
-  get sessions(): any {
+  get sessions(): Dictionary<Session> {
     return this._sessions.getValue();
   }
 
-  set sessions(val: any) {
+  set sessions(val: Dictionary<Session>) {
     this._sessions.next(val);
   }
 
-  get corresp(): any {
-    return this._corresp.getValue();
+  get speakerSessionLinks(): any {
+    return this._speakerSessionLinks.getValue();
   }
 
-  set corresp(val: any) {
-    this._corresp.next(val);
+  set speakerSessionLinks(val: any) {
+    this._speakerSessionLinks.next(val);
   }
 
   async fetchAll() {
@@ -49,27 +49,27 @@ export class SessionsStoreService {
     this.sessions = sessions;
     this.storageService.setSessions(sessions);
 
-    // Build correspondance speaker -> session
+    // Build speakerSessionLinksondance speaker -> session
     // {
     //   "nom du speaker": ["1", "2"];
     // }
-    let corresp = {};
+    let speakerSessionLinks = {};
     const sessionsArray = Object.keys(sessions).map((id: any) => sessions[id]);
 
     for (const session of sessionsArray) {
       if (session.speakers) {
         for (const speaker of session.speakers) {
-          if (!corresp[speaker]) {
-            corresp[speaker] = [session.id];
+          if (!speakerSessionLinks[speaker]) {
+            speakerSessionLinks[speaker] = [session.id];
           } else {
-            corresp[speaker].push(session.id);
+            speakerSessionLinks[speaker].push(session.id);
           }
         }
       }
     }
 
-    this.corresp = corresp;
-    this.storageService.setC(corresp);
+    this.speakerSessionLinks = speakerSessionLinks;
+    this.storageService.setSpeakerSessionLinks(speakerSessionLinks);
   }
 
   readonly selectedSession$ = combineLatest(
@@ -84,7 +84,7 @@ export class SessionsStoreService {
   );
 
   init() {
-    this.storageService.getSessions().then((sessions: any) => {
+    this.storageService.getSessions().then((sessions: Dictionary<Session>) => {
       if (
         Object.entries(sessions).length === 0 &&
         sessions.constructor === Object
@@ -92,8 +92,8 @@ export class SessionsStoreService {
         this.fetchAll();
       } else {
         this._sessions.next(sessions);
-        this.storageService.getC().then((c: any) => {
-          this._corresp.next(c);
+        this.storageService.getSpeakerSessionLinks().then((speakerSessionLinks: Dictionary<string[]>) => {
+          this._speakerSessionLinks.next(speakerSessionLinks);
         });
       }
     });
