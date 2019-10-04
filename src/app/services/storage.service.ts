@@ -13,6 +13,10 @@ export class StorageService {
     this.storage.set("speakers", speakers);
   }
 
+  setNotes(speakers: any): void {
+    this.storage.set("notes", speakers);
+  }
+
   setC(c: any): void {
     this.storage.set("c", c);
   }
@@ -31,6 +35,16 @@ export class StorageService {
     return this.storage.get("speakers").then((speakers: any) => {
       if (speakers) {
         return speakers;
+      } else {
+        return {};
+      }
+    });
+  }
+
+  getNotes(): Promise<any> {
+    return this.storage.get("notes").then((notes: any) => {
+      if (notes) {
+        return notes;
       } else {
         return {};
       }
