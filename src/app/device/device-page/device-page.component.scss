@@ -4,3 +4,7 @@ ion-col {
     border-style: solid; 
     border-color: grey;
 }
+
+ion-row:last-child ion-col{
+    border: none;
+}

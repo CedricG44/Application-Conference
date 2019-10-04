@@ -20,6 +20,10 @@ export class SessionDetailsPageComponent {
     this.router.navigate(["/sessions"]);
   }
 
+  onNavigationNotes(id : string){
+    this.router.navigate(["sessions/notes", id]);    
+  }
+  
   onNavigateToDetail(id: string) {
     this.router.navigate(["speakers", id]);
   }

@@ -9,8 +9,13 @@ import { Session } from "src/app/models/sessions";
 export class SessionDetailsComponent {
   @Input() session: Session;
   @Output() navigateToDetail = new EventEmitter<string>();
+  @Output() navigateToNotes = new EventEmitter<string>();
 
   constructor() {}
+  
+  sessionNotes(id : string){
+    this.navigateToNotes.emit(id);
+  }
 
   goToSpeakerDetail(id: string) {
     this.navigateToDetail.emit(id);
