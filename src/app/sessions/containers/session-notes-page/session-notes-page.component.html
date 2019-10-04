@@ -10,5 +10,7 @@
 </ion-header>
 
 <ion-content>
-  <app-session-notes [session]="sharedService.selectedSessionWithSpeakers$ | async"></app-session-notes>
+  <app-session-notes
+    [session]="sharedService.selectedSessionWithSpeakers$ | async"
+  ></app-session-notes>
 </ion-content>

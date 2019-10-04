@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { SessionsStoreService } from "./sessions-store.service";
 import { SpeakersStoreService } from "./speakers-store.service";
 import { zip } from "rxjs";
-import { map } from "rxjs/operators";
+import { map, shareReplay } from "rxjs/operators";
 
 @Injectable()
 export class SharedService {
@@ -23,7 +23,8 @@ export class SharedService {
         ...s,
         speakersInfos: s.speakers && s.speakers.map(n => speakers[n])
       };
-    })
+    }),
+    shareReplay()
   );
 
   readonly selectedSpeakerWithSession$ = zip(
