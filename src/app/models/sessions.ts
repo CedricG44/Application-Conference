@@ -1,4 +1,5 @@
 import { Track } from "./track";
+import { Speaker } from "../speakers/speaker.model";
 
 export interface Session {
   id: number;
@@ -13,5 +14,5 @@ export interface Session {
   tags: string[];
   complexity: string;
   speakers: number[];
-  speakersInfos?: any[];
+  speakersInfos?: Speaker[];
 }

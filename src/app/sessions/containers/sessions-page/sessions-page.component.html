@@ -11,7 +11,7 @@
 
 <ion-content>
   <app-sessions-list
-    [sessions]="sharedService.sessionsArrayWithSpeakers$ | async"
+    [sessions]="sessionsStore.sessionsArray$ | async"
     (navigateToDetails)="onNavigationDetails($event)"
   ></app-sessions-list>
 </ion-content>

@@ -11,6 +11,6 @@
 
 <ion-content>
   <app-session-details
-    [session]="sessionsStore.selectedSession$ | async"
+    [session]="sharedService.selectedSessionWithSpeakers$ | async"
   ></app-session-details>
 </ion-content>

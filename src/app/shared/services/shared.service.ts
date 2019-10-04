@@ -14,17 +14,15 @@ export class SharedService {
     this.speakersStoreService.init();
   }
 
-  readonly sessionsArrayWithSpeakers$ = zip(
-    this.sessionsStoreService.sessionsArray$,
+  readonly selectedSessionWithSpeakers$ = zip(
+    this.sessionsStoreService.selectedSession$,
     this.speakersStoreService.speakers$
   ).pipe(
-    map(([sessionsArray, speakers]) => {
-      return sessionsArray.map(s => {
-        return {
-          ...s,
-          speakersInfos: s.speakers && s.speakers.map(n => speakers[n])
-        };
-      });
+    map(([s, speakers]) => {
+      return {
+        ...s,
+        speakersInfos: s.speakers && s.speakers.map(n => speakers[n])
+      };
     })
   );
 }

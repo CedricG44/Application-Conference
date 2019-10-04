@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
 import { SessionsStoreService } from "../../../shared/services/sessions-store.service";
+import { SharedService } from "src/app/shared/services/shared.service";
 
 @Component({
   selector: "app-session-details-page",
@@ -11,6 +12,7 @@ import { SessionsStoreService } from "../../../shared/services/sessions-store.se
 export class SessionDetailsPageComponent implements OnInit {
   constructor(
     public sessionsStore: SessionsStoreService,
+    public sharedService: SharedService,
     private router: Router
   ) {}
 
