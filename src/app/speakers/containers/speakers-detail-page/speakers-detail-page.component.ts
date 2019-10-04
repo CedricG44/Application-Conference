@@ -1,21 +1,19 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { SpeakersStoreService } from "../../../services/speakers-store.service";
-import { Router } from "@angular/router";
+import { Location } from "@angular/common";
 
 @Component({
   selector: "app-speakers-detail-page",
   templateUrl: "./speakers-detail-page.component.html",
   styleUrls: ["./speakers-detail-page.component.scss"]
 })
-export class SpeakersDetailPageComponent implements OnInit {
+export class SpeakersDetailPageComponent {
   constructor(
     public speakersStore: SpeakersStoreService,
-    private router: Router
+    private location: Location
   ) {}
 
-  ngOnInit() {}
-
   goBack() {
-    this.router.navigate(["/speakers"]);
+    this.location.back();
   }
 }
