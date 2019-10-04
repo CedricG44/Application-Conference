@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
 import { SessionsStoreService } from "../../../services/sessions-store.service";
 import { SharedService } from "../../../services/shared.service";
+import { Location } from "@angular/common";
 
 @Component({
   selector: "app-session-details-page",
@@ -13,11 +14,12 @@ export class SessionDetailsPageComponent {
   constructor(
     public sessionsStore: SessionsStoreService,
     public sharedService: SharedService,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) {}
 
   goBack(): void {
-    this.router.navigate(["/sessions"]);
+    this.location.back();
   }
 
   onNavigationNotes(id : string){
