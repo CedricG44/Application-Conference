@@ -13,4 +13,5 @@ export interface Session {
   tags: string[];
   complexity: string;
   speakers: number[];
+  speakersInfos?: any[];
 }

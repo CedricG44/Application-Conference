@@ -14,7 +14,8 @@ export class SessionsPageComponent {
     public sharedService: SharedService,
     public sessionsStore: SessionsStoreService,
     private router: Router
-  ) {}
+  ) {
+  }
 
   onNavigationDetails(eventId: number): void {
     this.router.navigate(["sessions", eventId]);
