@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, SimpleChanges } from "@angular/core";
+import { Component, Input, Output } from "@angular/core";
 import { Speaker } from "../../speaker.model";
 import { EventEmitter } from "@angular/core";
 
@@ -7,13 +7,9 @@ import { EventEmitter } from "@angular/core";
   templateUrl: "./speakers-list.component.html",
   styleUrls: ["./speakers-list.component.scss"]
 })
-export class SpeakersListComponent implements OnInit {
+export class SpeakersListComponent {
   @Input() speakers: Speaker[];
   @Output() navigateToDetail = new EventEmitter();
-
-  constructor() {}
-
-  ngOnInit() {}
 
   goToSpeakerDetail(id: string) {
     this.navigateToDetail.emit(id);

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import { Component, ChangeDetectionStrategy } from "@angular/core";
 import { SpeakersStoreService } from "../../../services/speakers-store.service";
 import { Router } from "@angular/router";
 import { SharedService } from "../../../services/shared.service";
@@ -9,14 +9,12 @@ import { SharedService } from "../../../services/shared.service";
   styleUrls: ["./speakers-page.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SpeakersPageComponent implements OnInit {
+export class SpeakersPageComponent {
   constructor(
     public sharedService: SharedService,
     public speakersStore: SpeakersStoreService,
     private router: Router
   ) {}
-
-  ngOnInit() {}
 
   onNavigateToDetail(id: string) {
     this.router.navigate(["speakers", id]);

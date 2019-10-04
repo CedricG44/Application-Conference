@@ -10,8 +10,6 @@ export class SessionsListComponent {
   @Input() sessions: Session[];
   @Output() navigateToDetails = new EventEmitter<number>();
 
-  constructor() {}
-
   sessionDetails(sessionId: number): void {
     this.navigateToDetails.emit(sessionId);
   }

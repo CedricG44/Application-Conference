@@ -95,6 +95,9 @@ export class SessionsStoreService {
         this.fetchAll();
       } else {
         this._sessions.next(sessions);
+        this.storageService.getC().then((c: any) => {
+          this._corresp.next(c);
+        });
       }
     });
   }

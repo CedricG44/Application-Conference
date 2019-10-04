@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import { Component, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
 import { SessionsStoreService } from "../../../services/sessions-store.service";
 import { SharedService } from "../../../services/shared.service";
@@ -9,14 +9,12 @@ import { SharedService } from "../../../services/shared.service";
   styleUrls: ["./session-details-page.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SessionDetailsPageComponent implements OnInit {
+export class SessionDetailsPageComponent {
   constructor(
     public sessionsStore: SessionsStoreService,
     public sharedService: SharedService,
     private router: Router
   ) {}
-
-  ngOnInit() {}
 
   goBack(): void {
     this.router.navigate(["/sessions"]);
