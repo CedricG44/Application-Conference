@@ -1,15 +1,17 @@
 import { Injectable } from "@angular/core";
 import { Storage } from "@ionic/storage";
+import {Dictionary, Session} from '../models/sessions';
+import {Speaker} from '../speakers/speaker.model';
 
 @Injectable()
 export class StorageService {
   constructor(private storage: Storage) {}
 
-  setSessions(sessions: any): void {
+  setSessions(sessions: Dictionary<Session>): void {
     this.storage.set("sessions", sessions);
   }
 
-  setSpeakers(speakers: any): void {
+  setSpeakers(speakers: Dictionary<Speaker>): void {
     this.storage.set("speakers", speakers);
   }
 
@@ -21,8 +23,8 @@ export class StorageService {
     this.storage.set("c", c);
   }
 
-  getSessions(): Promise<any> {
-    return this.storage.get("sessions").then((sessions: any) => {
+  getSessions(): Promise<Dictionary<Session>> {
+    return this.storage.get("sessions").then((sessions: Dictionary<Session>) => {
       if (sessions) {
         return sessions;
       } else {
@@ -31,8 +33,8 @@ export class StorageService {
     });
   }
 
-  getSpeakers(): Promise<any> {
-    return this.storage.get("speakers").then((speakers: any) => {
+  getSpeakers(): Promise<Dictionary<Speaker>> {
+    return this.storage.get("speakers").then((speakers: Dictionary<Speaker>) => {
       if (speakers) {
         return speakers;
       } else {

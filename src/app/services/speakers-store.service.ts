@@ -1,10 +1,11 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, combineLatest } from "rxjs";
+import {BehaviorSubject, combineLatest, Observable} from 'rxjs';
 import { SpeakersService } from "./speakers.service";
 import { Speaker } from "../speakers/speaker.model";
 import { ActivatedRoute } from "@angular/router";
 import { map } from "rxjs/operators";
 import { StorageService } from "./storage.service";
+import {Dictionary} from '../models/sessions';
 
 @Injectable()
 export class SpeakersStoreService {
@@ -20,15 +21,15 @@ export class SpeakersStoreService {
   // - Writing to state should be handled by specialized Store methods (ex: addTodo, removeTodo, etc)
   // - Create one BehaviorSubject per store entity, for example if you have TodoGroups
   //   create a new BehaviorSubject for it, as well as the observable$, and getters/setters
-  private readonly _speakers = new BehaviorSubject<{ [id: string]: Speaker }>(
+  private readonly _speakers = new BehaviorSubject<Dictionary<Speaker>>(
     {}
   );
 
   // Expose the observable$ part of the _todos subject (read only stream)
   readonly speakers$ = this._speakers.asObservable();
-  readonly speakersArray$ = this.speakers$.pipe(
-    map((speakers: any) => {
-      return Object.keys(speakers).map((id: any) => speakers[id]);
+  readonly speakersArray$: Observable<Speaker[]> = this.speakers$.pipe(
+    map((speakers: Dictionary<Speaker>) => {
+      return Object.keys(speakers).map(id => speakers[id]);
     })
   );
 
@@ -45,13 +46,13 @@ export class SpeakersStoreService {
   );
 
   // the getter will return the last value emitted in _todos subject
-  get speakers(): any {
+  get speakers(): Dictionary<Speaker> {
     return this._speakers.getValue();
   }
 
   // assigning a value to this.todos will push it onto the observable
   // and down to all of its subsribers (ex: this.todos = [])
-  set speakers(val: any) {
+  set speakers(val: Dictionary<Speaker>) {
     this._speakers.next(val);
   }
 
@@ -62,7 +63,7 @@ export class SpeakersStoreService {
   }
 
   init() {
-    this.storageService.getSpeakers().then((speakers: any) => {
+    this.storageService.getSpeakers().then((speakers: Dictionary<Speaker>) => {
       if (
         Object.entries(speakers).length === 0 &&
         speakers.constructor === Object

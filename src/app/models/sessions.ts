@@ -16,3 +16,5 @@ export interface Session {
   speakers: number[];
   speakersInfos?: Speaker[];
 }
+
+export type Dictionary<T> =  { [id: string]: T }
