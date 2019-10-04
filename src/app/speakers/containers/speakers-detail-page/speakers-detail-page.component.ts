@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { SpeakersStoreService } from "../../../shared/services/speakers-store.service";
+import { SpeakersStoreService } from "../../../services/speakers-store.service";
 import { Router } from "@angular/router";
 
 @Component({

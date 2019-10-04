@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, combineLatest } from "rxjs";
 import { SpeakersService } from "./speakers.service";
-import { Speaker } from "../../speakers/speaker.model";
+import { Speaker } from "../speakers/speaker.model";
 import { ActivatedRoute } from "@angular/router";
 import { map } from "rxjs/operators";
 import { StorageService } from "./storage.service";
@@ -56,7 +56,9 @@ export class SpeakersStoreService {
   }
 
   async fetchAll() {
-    this.speakers = await this.speakersService.getSpeakers().toPromise();
+    const speakers = await this.speakersService.getSpeakers().toPromise();
+    this.speakers = speakers;
+    this.storageService.setSpeakers(speakers);
   }
 
   init() {

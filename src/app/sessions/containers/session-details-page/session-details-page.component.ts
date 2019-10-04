@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
-import { SessionsStoreService } from "../../../shared/services/sessions-store.service";
-import { SharedService } from "src/app/shared/services/shared.service";
+import { SessionsStoreService } from "../../../services/sessions-store.service";
+import { SharedService } from "../../../services/shared.service";
 
 @Component({
   selector: "app-session-details-page",

@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
-import { SpeakersStoreService } from "../../../shared/services/speakers-store.service";
+import { SpeakersStoreService } from "../../../services/speakers-store.service";
 import { Router } from "@angular/router";
-import { SharedService } from "../../../shared/services/shared.service";
+import { SharedService } from "../../../services/shared.service";
 
 @Component({
   selector: "app-speakers-page",

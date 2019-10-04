@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, combineLatest, zip } from "rxjs";
 import { SessionsService } from "./sessions.service";
-import { Session } from "../../models/sessions";
+import { Session } from "../models/sessions";
 import { map } from "rxjs/operators";
 import { StorageService } from "./storage.service";
 import { ActivatedRoute } from "@angular/router";

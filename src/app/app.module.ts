@@ -9,6 +9,13 @@ import { StatusBar } from "@ionic-native/status-bar/ngx";
 
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
+import { SessionsService } from "./services/sessions.service";
+import { SessionsStoreService } from "./services/sessions-store.service";
+import { SpeakersService } from "./services/speakers.service";
+import { SpeakersStoreService } from "./services/speakers-store.service";
+import { StorageService } from "./services/storage.service";
+import { SharedService } from "./services/shared.service";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,12 +27,19 @@ import { AppRoutingModule } from "./app-routing.module";
       name: "devfest",
       driverOrder: ["indexeddb", "sqlite", "websql", "localstorage"]
     }),
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    SessionsService,
+    SessionsStoreService,
+    SpeakersService,
+    SpeakersStoreService,
+    StorageService,
+    SharedService
   ],
   bootstrap: [AppComponent]
 })
