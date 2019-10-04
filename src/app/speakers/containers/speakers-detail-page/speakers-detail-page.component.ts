@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { SpeakersStoreService } from "../../../services/speakers-store.service";
 import { Router } from "@angular/router";
+import { SharedService } from "src/app/services/shared.service";
 
 @Component({
   selector: "app-speakers-detail-page",
@@ -8,14 +8,15 @@ import { Router } from "@angular/router";
   styleUrls: ["./speakers-detail-page.component.scss"]
 })
 export class SpeakersDetailPageComponent implements OnInit {
-  constructor(
-    public speakersStore: SpeakersStoreService,
-    private router: Router
-  ) {}
+  constructor(public sharedService: SharedService, private router: Router) {}
 
   ngOnInit() {}
 
   goBack() {
     this.router.navigate(["/speakers"]);
+  }
+
+  goToSessionDetail(id) {
+    this.router.navigate(["sessions", id]);
   }
 }

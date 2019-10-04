@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Speaker } from "../../speaker.model";
 
 @Component({
@@ -8,8 +8,13 @@ import { Speaker } from "../../speaker.model";
 })
 export class SpeakersDetailComponent implements OnInit {
   @Input() speaker: Speaker;
+  @Output() onGoToSessionDetail = new EventEmitter();
 
   constructor() {}
 
   ngOnInit() {}
+
+  goToSessionDetail(id) {
+    this.onGoToSessionDetail.emit(id);
+  }
 }

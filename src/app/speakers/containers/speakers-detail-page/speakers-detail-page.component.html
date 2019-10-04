@@ -10,6 +10,9 @@
 </ion-header>
 
 <ion-content>
-  <app-speakers-detail [speaker]="speakersStore.selectedSpeaker$ | async">
+  <app-speakers-detail
+    [speaker]="sharedService.selectedSpeakerWithSession$ | async"
+    (onGoToSessionDetail)="goToSessionDetail($event)"
+  >
   </app-speakers-detail>
 </ion-content>

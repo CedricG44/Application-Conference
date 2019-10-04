@@ -25,4 +25,17 @@ export class SharedService {
       };
     })
   );
+
+  readonly selectedSpeakerWithSession$ = zip(
+    this.speakersStoreService.selectedSpeaker$,
+    this.sessionsStoreService.corresp$,
+    this.sessionsStoreService.sessions$
+  ).pipe(
+    map(([speaker, corresp, sessions]) => {
+      return {
+        ...speaker,
+        sessions: corresp[speaker.id].map(s => sessions[s])
+      };
+    })
+  );
 }

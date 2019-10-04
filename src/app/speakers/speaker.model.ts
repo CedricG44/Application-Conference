@@ -1,3 +1,5 @@
+import { Session } from "../models/sessions";
+
 export interface Speaker {
   id: string;
   name: string;
@@ -11,6 +13,7 @@ export interface Speaker {
   tags: string[];
   badges: Badge[];
   socials: Social[];
+  sessions?: Session[];
 }
 
 export interface Badge {

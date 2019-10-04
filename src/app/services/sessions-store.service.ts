@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, combineLatest, zip } from "rxjs";
+import { BehaviorSubject, combineLatest } from "rxjs";
 import { SessionsService } from "./sessions.service";
 import { Session } from "../models/sessions";
 import { map } from "rxjs/operators";
@@ -17,8 +17,11 @@ export class SessionsStoreService {
   private readonly _sessions = new BehaviorSubject<{ [id: string]: Session }>(
     {}
   );
+  private readonly _corresp = new BehaviorSubject<any>({});
 
   readonly sessions$ = this._sessions.asObservable();
+  readonly corresp$ = this._corresp.asObservable();
+
   readonly sessionsArray$ = this.sessions$.pipe(
     map((sessions: any) => {
       return Object.keys(sessions).map((id: any) => sessions[id]);
@@ -33,11 +36,42 @@ export class SessionsStoreService {
     this._sessions.next(val);
   }
 
+  get corresp(): any {
+    return this._corresp.getValue();
+  }
+
+  set corresp(val: any) {
+    this._corresp.next(val);
+  }
+
   async fetchAll() {
     const sessions = await this.sessionsService.getSessions().toPromise();
     this.sessions = sessions;
-    console.log("fetch", sessions);
     this.storageService.setSessions(sessions);
+
+    // Build correspondance speaker -> session
+    // {
+    //   "nom du speaker": ["1", "2"];
+    // }
+    let corresp = {};
+    const sessionsArray = Object.keys(sessions).map((id: any) => sessions[id]);
+
+    for (const session of sessionsArray) {
+      if (session.speakers) {
+        for (const speaker of session.speakers) {
+          if (!corresp[speaker]) {
+            corresp[speaker] = [session.id];
+          } else {
+            corresp[speaker].push(session.id);
+          }
+        }
+      }
+    }
+
+    // console.log("truc", corresp);
+
+    this.corresp = corresp;
+    this.storageService.setC(corresp);
   }
 
   readonly selectedSession$ = combineLatest(
