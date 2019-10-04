@@ -68,8 +68,6 @@ export class SessionsStoreService {
       }
     }
 
-    // console.log("truc", corresp);
-
     this.corresp = corresp;
     this.storageService.setC(corresp);
   }
@@ -80,8 +78,7 @@ export class SessionsStoreService {
     (sessions, params) => {
       const url = this.route.snapshot["_routerState"].url;
       const urlSplitted = url.split("/");
-      const id = urlSplitted && urlSplitted[2];
-
+      const id = urlSplitted && urlSplitted[urlSplitted.length - 1];
       return sessions[id];
     }
   );
