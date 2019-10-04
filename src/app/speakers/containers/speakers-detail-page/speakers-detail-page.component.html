@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="goBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Detail speaker
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-speakers-detail [speaker]="speakersStore.selectedSpeaker$ | async">
+  </app-speakers-detail>
+</ion-content>

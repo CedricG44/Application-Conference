@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { SpeakersPageComponent } from "./speakers-page/speakers-page.component";
-import { SpeakersDetailPageComponent } from "./speakers-detail-page/speakers-detail-page.component";
+import { SpeakersPageComponent } from "./containers/speakers-page/speakers-page.component";
+import { SpeakersDetailPageComponent } from "./containers/speakers-detail-page/speakers-detail-page.component";
 
 const routes: Routes = [
   {
@@ -9,7 +9,7 @@ const routes: Routes = [
     component: SpeakersPageComponent
   },
   {
-    path: "/:id",
+    path: ":id",
     component: SpeakersDetailPageComponent
   }
 ];
