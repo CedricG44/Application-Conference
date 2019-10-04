@@ -21,4 +21,8 @@ export class SessionDetailsPageComponent implements OnInit {
   goBack(): void {
     this.router.navigate(["/sessions"]);
   }
+
+  onNavigateToDetail(id: string) {
+    this.router.navigate(["speakers", id]);
+  }
 }

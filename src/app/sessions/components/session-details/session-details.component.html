@@ -13,9 +13,16 @@
   <ion-card-content>
     <ion-card-subtitle>Présentateurs</ion-card-subtitle>
     <ion-list>
-      <ion-item *ngFor="let speaker of session.speakersInfos">
-        <ion-label>{{ speaker.name }}</ion-label>
-      </ion-item>
+      <div
+        class="ion-activatable"
+        *ngFor="let speaker of session.speakersInfos"
+        (click)="goToSpeakerDetail(speaker.id)"
+      >
+        <ion-item lines="none">
+          <ion-icon slot="start" name="ios-people"></ion-icon>
+          <ion-label>{{ speaker.name }}</ion-label>
+        </ion-item>
+      </div>
     </ion-list>
   </ion-card-content>
 </ion-card>

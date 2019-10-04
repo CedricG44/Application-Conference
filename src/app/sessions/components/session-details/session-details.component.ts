@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Session } from "src/app/models/sessions";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-session-details",
@@ -8,8 +9,13 @@ import { Session } from "src/app/models/sessions";
 })
 export class SessionDetailsComponent implements OnInit {
   @Input() session: Session;
+  @Output() navigateToDetail = new EventEmitter<string>();
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
+
+  goToSpeakerDetail(id: string) {
+    this.navigateToDetail.emit(id);
+  }
 }
