@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Plugins, DeviceInfo, NetworkStatus } from '@capacitor/core';
+const { Device, Network } = Plugins;
 
 @Component({
   selector: 'app-device-page',
@@ -7,8 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DevicePageComponent implements OnInit {
 
-  constructor() { }
+  private informations : Promise<DeviceInfo>;
+  private network : Promise<NetworkStatus>;
 
-  ngOnInit() {}
+  constructor() {
+    this.informations = Device.getInfo();
+    this.network = Network.getStatus();
+  }
+
+  ngOnInit() { }
 
 }

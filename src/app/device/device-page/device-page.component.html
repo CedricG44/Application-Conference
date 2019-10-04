@@ -4,11 +4,32 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Device
+      Téléphone
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  hello
+  <ion-grid>
+    <ion-row>
+      <ion-col>Plateforme</ion-col>
+      <ion-col>{{ (this.informations | async)?.platform }}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>Version</ion-col>
+      <ion-col>{{ (this.informations | async)?.osVersion }}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>UUID</ion-col>
+      <ion-col>{{ (this.informations | async)?.uuid }}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>Model</ion-col>
+      <ion-col>{{ (this.informations | async)?.model }}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>Connection</ion-col>
+      <ion-col>{{ (this.network | async)?.connectionType }}</ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
