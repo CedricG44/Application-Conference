@@ -1,19 +1,30 @@
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    path: "",
+    redirectTo: "home",
+    pathMatch: "full"
   },
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
+    path: "home",
+    loadChildren: () => import("./home/home.module").then(m => m.HomePageModule)
   },
   {
-    path: 'list',
-    loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
+    path: "list",
+    loadChildren: () => import("./list/list.module").then(m => m.ListPageModule)
+  },
+
+  {
+    path: "sessions",
+    loadChildren: () =>
+      import("./sessions/sessions.module").then(m => m.SessionsModule)
+  },
+  {
+    path: "speakers",
+    loadChildren: () =>
+      import("./speakers/speakers.module").then(m => m.SpeakersModule)
   }
 ];
 
