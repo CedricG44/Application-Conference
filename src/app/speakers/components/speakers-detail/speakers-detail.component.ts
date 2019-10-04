@@ -15,6 +15,7 @@ export class SpeakersDetailComponent {
   constructor(private contacts: Contacts, public platform: Platform) {}
 
   goToSessionDetail(id) {
+    console.log("ID", id);
     this.onGoToSessionDetail.emit(id);
   }
   addToContacts(event: CustomEvent, speaker: Speaker) {

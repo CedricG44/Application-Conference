@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { SessionsStoreService } from "./sessions-store.service";
 import { SpeakersStoreService } from "./speakers-store.service";
-import { zip } from "rxjs";
-import { map, shareReplay } from "rxjs/operators";
+import { zip, combineLatest } from "rxjs";
+import { map, shareReplay, share } from "rxjs/operators";
 
 @Injectable()
 export class SharedService {
@@ -14,17 +14,32 @@ export class SharedService {
     this.speakersStoreService.init();
   }
 
-  readonly selectedSessionWithSpeakers$ = zip(
+  // readonly selectedSessionWithSpeakers$ = zip(
+  //   this.sessionsStoreService.selectedSession$,
+  //   this.speakersStoreService.speakers$
+  // ).pipe(
+  //   map(([s, speakers]) => {
+  //     return {
+  //       ...s,
+  //       speakersInfos: s.speakers && s.speakers.map(n => speakers[n])
+  //     };
+  //   }),
+  //   shareReplay(1)
+  // );
+
+  readonly selectedSessionWithSpeakers$ = combineLatest(
     this.sessionsStoreService.selectedSession$,
-    this.speakersStoreService.speakers$
-  ).pipe(
-    map(([s, speakers]) => {
-      return {
-        ...s,
-        speakersInfos: s.speakers && s.speakers.map(n => speakers[n])
-      };
-    }),
-    shareReplay()
+    this.speakersStoreService.speakers$,
+    (s, speakers) => {
+      if (s && speakers) {
+        return {
+          ...s,
+          speakersInfos: s.speakers && s.speakers.map(n => speakers[n])
+        };
+      } else {
+        return {};
+      }
+    }
   );
 
   readonly selectedSpeakerWithSession$ = zip(
