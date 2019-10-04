@@ -10,6 +10,7 @@ import { SessionsService } from "../services/sessions.service";
 import { SessionsStoreService } from "../services/sessions-store.service";
 import { SessionDetailsComponent } from "./session-details/session-details.component";
 import { SessionDetailsPageComponent } from "./session-details-page/session-details-page.component";
+import { StorageService } from "../services/storage.service";
 
 @NgModule({
   declarations: [
@@ -19,6 +20,6 @@ import { SessionDetailsPageComponent } from "./session-details-page/session-deta
     SessionDetailsComponent
   ],
   imports: [CommonModule, SessionsRoutingModule, IonicModule, HttpClientModule],
-  providers: [SessionsService, SessionsStoreService]
+  providers: [SessionsService, SessionsStoreService, StorageService]
 })
 export class SessionsModule {}

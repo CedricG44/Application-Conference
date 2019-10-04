@@ -3,11 +3,21 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { SessionsService } from "./sessions.service";
 import { Session } from "../models/sessions";
 import { map } from "rxjs/operators";
+import { StorageService } from "./storage.service";
 
 @Injectable()
 export class SessionsStoreService {
-  constructor(private sessionsService: SessionsService) {
-    this.fetchAll();
+  constructor(
+    private sessionsService: SessionsService,
+    private storageService: StorageService
+  ) {
+    this.storageService.getSessions().then((sessions: Session[]) => {
+      if (sessions.length > 0) {
+        this._sessions.next(sessions);
+      } else {
+        this.fetchAll();
+      }
+    });
   }
 
   private readonly _sessions = new BehaviorSubject<Session[]>([]);
@@ -29,6 +39,8 @@ export class SessionsStoreService {
   }
 
   async fetchAll() {
-    this.sessions = await this.sessionsService.getSessions().toPromise();
+    const sessions = await this.sessionsService.getSessions().toPromise();
+    this.sessions = sessions;
+    this.storageService.setSessions(sessions);
   }
 }
