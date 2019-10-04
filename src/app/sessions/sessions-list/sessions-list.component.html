@@ -3,6 +3,7 @@
     *ngFor="let session of sessions"
     (click)="sessionDetails(session.id)"
   >
+    <ion-icon slot="start" name="ios-people"></ion-icon>
     <ion-label>{{ session.title }}</ion-label>
     <ion-icon slot="end" name="ios-arrow-forward"></ion-icon>
     <ion-ripple-effect type="bounded"></ion-ripple-effect>

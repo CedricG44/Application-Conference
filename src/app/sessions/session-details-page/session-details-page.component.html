@@ -1,3 +1,16 @@
-<app-session-details
-  [session]="sessionsStore.selectedSession$ | async"
-></app-session-details>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="goBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Session
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-session-details
+    [session]="sessionsStore.selectedSession$ | async"
+  ></app-session-details>
+</ion-content>

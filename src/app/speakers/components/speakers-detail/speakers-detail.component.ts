@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { Speaker } from "../../speaker.model";
 
 @Component({
@@ -8,7 +8,6 @@ import { Speaker } from "../../speaker.model";
 })
 export class SpeakersDetailComponent implements OnInit {
   @Input() speaker: Speaker;
-  @Output() goBack = new EventEmitter();
 
   constructor() {}
 

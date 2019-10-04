@@ -1,11 +1,11 @@
 <ion-list>
-  <ion-item *ngFor="let speaker of speakers">
-    {{ speaker.name }}
-    <ion-icon
-      class="icon-button"
-      name="arrow-forward"
-      (click)="goToSpeakerDetail(speaker.id)"
-      slot="end"
-    ></ion-icon>
+  <ion-item
+    *ngFor="let speaker of speakers"
+    (click)="goToSpeakerDetail(speaker.id)"
+  >
+    <ion-icon slot="start" name="ios-person"></ion-icon>
+    <ion-label>{{ speaker.name }}</ion-label>
+    <ion-icon slot="end" name="ios-arrow-forward"></ion-icon>
+    <ion-ripple-effect type="bounded"></ion-ripple-effect>
   </ion-item>
 </ion-list>
