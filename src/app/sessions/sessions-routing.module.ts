@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { SessionsPageComponent } from "./sessions-page/sessions-page.component";
-import { SessionDetailsPageComponent } from "./session-details-page/session-details-page.component";
+import { SessionsPageComponent } from "./containers/sessions-page/sessions-page.component";
+import { SessionDetailsPageComponent } from "./containers/session-details-page/session-details-page.component";
 
 const routes: Routes = [
   {
