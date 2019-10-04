@@ -11,7 +11,7 @@
 
 <ion-content>
   <app-speakers-list
-    [speakers]="speakersStore.speakers$ | async"
+    [speakers]="speakersStore.speakersArray$ | async"
     (navigateToDetail)="onNavigateToDetail($event)"
   >
   </app-speakers-list>

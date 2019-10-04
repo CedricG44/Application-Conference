@@ -6,11 +6,9 @@ import { SessionsPageComponent } from "./sessions-page/sessions-page.component";
 import { IonicModule } from "@ionic/angular";
 import { SessionsListComponent } from "./sessions-list/sessions-list.component";
 import { HttpClientModule } from "@angular/common/http";
-import { SessionsService } from "../services/sessions.service";
-import { SessionsStoreService } from "../services/sessions-store.service";
 import { SessionDetailsComponent } from "./session-details/session-details.component";
 import { SessionDetailsPageComponent } from "./session-details-page/session-details-page.component";
-import { StorageService } from "../services/storage.service";
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -19,7 +17,12 @@ import { StorageService } from "../services/storage.service";
     SessionDetailsPageComponent,
     SessionDetailsComponent
   ],
-  imports: [CommonModule, SessionsRoutingModule, IonicModule, HttpClientModule],
-  providers: [SessionsService, SessionsStoreService, StorageService]
+  imports: [
+    CommonModule,
+    SessionsRoutingModule,
+    IonicModule,
+    HttpClientModule,
+    SharedModule
+  ]
 })
 export class SessionsModule {}

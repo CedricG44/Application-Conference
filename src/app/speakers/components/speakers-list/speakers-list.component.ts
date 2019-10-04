@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from "@angular/core";
+import { Component, OnInit, Input, Output, SimpleChanges } from "@angular/core";
 import { Speaker } from "../../speaker.model";
 import { EventEmitter } from "@angular/core";
 

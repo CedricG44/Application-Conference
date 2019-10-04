@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
-import { SessionsStoreService } from "src/app/services/sessions-store.service";
+import { SessionsStoreService } from "src/app/shared/services/sessions-store.service";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
@@ -9,16 +9,13 @@ import { ActivatedRoute } from "@angular/router";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SessionDetailsPageComponent implements OnInit {
-  sessionId: number;
+  // sessionId: number;
 
-  constructor(
-    public sessionsStore: SessionsStoreService,
-    private route: ActivatedRoute
-  ) {}
+  constructor(public sessionsStore: SessionsStoreService) {}
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      this.sessionId = +params.get("id");
-    });
+    // this.route.paramMap.subscribe(params => {
+    //   this.sessionId = +params.get("id");
+    // });
   }
 }

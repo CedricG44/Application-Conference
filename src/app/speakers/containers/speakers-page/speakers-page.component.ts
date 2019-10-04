@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
-import { SpeakersStoreService } from "../../speakers-store.service";
+import { SpeakersStoreService } from "../../../shared/services/speakers-store.service";
 import { Router } from "@angular/router";
+import { SharedService } from "../../../shared/services/shared.service";
 
 @Component({
   selector: "app-speakers-page",
@@ -10,6 +11,7 @@ import { Router } from "@angular/router";
 })
 export class SpeakersPageComponent implements OnInit {
   constructor(
+    public sharedService: SharedService,
     public speakersStore: SpeakersStoreService,
     private router: Router
   ) {}
